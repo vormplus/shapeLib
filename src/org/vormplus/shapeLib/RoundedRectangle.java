@@ -1,6 +1,7 @@
 package org.vormplus.shapeLib;
 
 import processing.core.PApplet;
+import processing.core.PConstants;
 import org.vormplus.shapeLib.BasicShape;
 
 public class RoundedRectangle extends BasicShape {
@@ -67,7 +68,7 @@ public class RoundedRectangle extends BasicShape {
 		p.bezierVertex( - w/2, h/2, -w/2, h/2 - r, -w/2 , h/2 - r );
 		p.vertex( -w/2 , -h/2 + r );
 		p.bezierVertex( -w/2, -h/2, -w/2 + r, -h/2, -w/2 + r, -h/2 );		
-		p.endShape(p.CLOSE);	
+		p.endShape(PConstants.CLOSE);	
 	}
 	
 	/**
@@ -76,7 +77,7 @@ public class RoundedRectangle extends BasicShape {
 	 */
 	public float area()
 	{
-		float area = (w * h) - ( 4 * r * r) + ( p.PI * r * r );
+		float area = (w * h) - ( 4 * r * r) + ( PConstants.PI * r * r );
 		return area;
 	}
 	
@@ -86,7 +87,7 @@ public class RoundedRectangle extends BasicShape {
 	 */
 	public float perimeter()
 	{
-		float perimeter = (( w + h ) * 2) - ( 8 * r ) + ( p.PI * r * 2);
+		float perimeter = (( w + h ) * 2) - ( 8 * r ) + ( PConstants.PI * r * 2);
 		return perimeter;
 	}
 	

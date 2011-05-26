@@ -5,6 +5,8 @@ import org.vormplus.shapeLib.stars.*;
 
 public class StarTest extends PApplet {
 
+	private static final long serialVersionUID = 1L;
+
 	Star s;
 	
 	static public void main(String args[])

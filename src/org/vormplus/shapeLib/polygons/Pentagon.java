@@ -1,34 +1,40 @@
 package org.vormplus.shapeLib.polygons;
 
 import processing.core.PApplet;
+import processing.core.PConstants;
+import processing.core.PVector;
 import org.vormplus.shapeLib.BasicShape;
 
-// http://en.wikipedia.org/wiki/Pentagon
+/**
+ * Create a Pentagon object.
+ * This class extends the BasicShape class.
+ * 
+ * References
+ * -----------------
+ * http://en.wikipedia.org/wiki/Pentagon
+ * http://www.mathopenref.com/pentagon.html
+ * 
+ * @author Jan Vantomme
+ */
 
 public class Pentagon extends BasicShape {
 
 	public float radius;
 	
-	private float cosLUT[];
-	private float sinLUT[];
-
+	private int numVertices = 5;
+	public PVector[] vertices;
+	
 	/**
 	 * Creates a Pentagon object
 	 * @param _p Reference to the PApplet object. Normally use 'this'
 	 */
-	public Pentagon( PApplet _p ) {
+	public Pentagon( PApplet _p )
+	{
 		super( _p );
 		radius = 50.0f;
 		
-		cosLUT = new float[5];
-		sinLUT = new float[5];
-		
-		float a = p.TWO_PI / 5;
-		
-		for (int i = 0; i < 5; i++) {
-			cosLUT[i] = p.cos( i * a );
-			sinLUT[i] = p.sin( i * a );
-		}
+		vertices = new PVector[numVertices];
+		calculateVertices();
 	}
 
 	/**
@@ -38,21 +44,33 @@ public class Pentagon extends BasicShape {
 	public Pentagon setRadius(float r)
 	{
 		radius = r;
+		calculateVertices();
 		return this;
 	}
 
+	/**
+	 * Function to calculate the coordinates of the vertices
+	 */
+	private void calculateVertices()
+	{
+		float a = PConstants.TWO_PI / numVertices;
+		for (int i = 0; i < 5; i++) {
+			float x = PApplet.cos( i * a ) * radius;
+			float y = PApplet.sin( i * a ) * radius;
+			vertices[i] = new PVector( x, y );
+		}		
+	}
+	
 	/**
 	 * Renders the Pentagon to the screen.
 	 */
 	public void render()
 	{
 		p.beginShape();
-		for (int i = 0; i < 5; i++) {
-			float x = cosLUT[i] * radius;
-			float y = sinLUT[i] * radius;
-			p.vertex(x, y);
+		for (int i = 0; i < numVertices; i++) {
+			p.vertex( vertices[i].x, vertices[i].y );
 		}
-		p.endShape(p.CLOSE);
+		p.endShape(PConstants.CLOSE);
 	}
 	
 	/**
@@ -74,22 +92,20 @@ public class Pentagon extends BasicShape {
 	}
 	
 	/**
-	 * Returns the internal angle of the Pentagon.
+	 * Returns the internal angle of the Pentagon. This number is based on the formula: (( 180 * 5 ) - 360) / 5
 	 * @return float: Internal angle of the Pentagon.
 	 */
 	public float internalAngle()
 	{
-		// (( 180 * 5 ) - 360) / 5
 		return 108.0f;
 	}
 	
 	/**
-	 * Returns the external angle of the Pentagon.
+	 * Returns the external angle of the Pentagon. This number is based on the formula: 180 - internal angle
 	 * @return float: External angle of the Pentagon.
 	 */
 	public float externalAngle()
 	{
-		// 180 - internal angle
 		return 72.0f;
 	}
 }

@@ -1,6 +1,7 @@
 package org.vormplus.shapeLib.stars;
 
 import processing.core.PApplet;
+import processing.core.PConstants;
 import org.vormplus.shapeLib.BasicShape;
 
 public class Star extends BasicShape {
@@ -82,17 +83,17 @@ public class Star extends BasicShape {
 		    }
 		    p.vertex( x, y );
 		}		
-		p.endShape(p.CLOSE);
+		p.endShape(PConstants.CLOSE);
 		
 	}
 	
 	private void calculatePoints()
 	{
-		float a = p.TWO_PI / numPoints;
+		float a = PConstants.TWO_PI / numPoints;
 		
 		for ( int i = 0; i < numPoints; i++ ) {
-			cosLUT[i] = p.cos( a * i );
-        	sinLUT[i] = p.sin( a * i );
+			cosLUT[i] = PApplet.cos( a * i );
+        	sinLUT[i] = PApplet.sin( a * i );
 		}	
 	}
 	

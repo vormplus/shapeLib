@@ -1,6 +1,7 @@
 package org.vormplus.shapeLib.polygons;
 
 import processing.core.PApplet;
+import processing.core.PConstants;
 import org.vormplus.shapeLib.BasicShape;
 
 // http://en.wikipedia.org/wiki/Decagon
@@ -23,11 +24,11 @@ public class Decagon extends BasicShape {
 		cosLUT = new float[10];
 		sinLUT = new float[10];
 		
-		float a = p.TWO_PI / 10;
+		float a = PConstants.TWO_PI / 10;
 		
 		for (int i = 0; i < 10; i++) {
-			cosLUT[i] = p.cos( i * a );
-			sinLUT[i] = p.sin( i * a );
+			cosLUT[i] = PApplet.cos( i * a );
+			sinLUT[i] = PApplet.sin( i * a );
 		}
 	}
 
@@ -52,7 +53,7 @@ public class Decagon extends BasicShape {
 			float y = sinLUT[i] * radius;
 			p.vertex(x, y);
 		}
-		p.endShape(p.CLOSE);
+		p.endShape(PConstants.CLOSE);
 	}
 	
 	/**

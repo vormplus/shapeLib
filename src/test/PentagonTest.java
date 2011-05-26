@@ -6,6 +6,8 @@ import org.vormplus.shapeLib.polygons.*;
 
 public class PentagonTest extends PApplet {
 
+	private static final long serialVersionUID = 1L;
+	
 	Pentagon p;
 	
 	static public void main(String args[])

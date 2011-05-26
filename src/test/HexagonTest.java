@@ -5,6 +5,8 @@ import org.vormplus.shapeLib.polygons.*;
 
 public class HexagonTest extends PApplet {
 
+	private static final long serialVersionUID = 1L;
+
 	Hexagon h;
 	
 	static public void main(String args[])

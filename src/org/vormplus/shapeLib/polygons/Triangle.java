@@ -1,6 +1,7 @@
 package org.vormplus.shapeLib.polygons;
 
 import processing.core.PApplet;
+import processing.core.PConstants;
 import org.vormplus.shapeLib.BasicShape;
 
 public class Triangle extends BasicShape {
@@ -23,11 +24,11 @@ public class Triangle extends BasicShape {
 		cosLUT = new float[3];
 		sinLUT = new float[3];
 		
-		float a = p.TWO_PI / 3;
+		float a = PConstants.TWO_PI / 3;
 		
 		for (int i = 0; i < 3; i++) {
-			cosLUT[i] = p.cos( i * a );
-			sinLUT[i] = p.sin( i * a );
+			cosLUT[i] = PApplet.cos( i * a );
+			sinLUT[i] = PApplet.sin( i * a );
 		}
 	
 	}
@@ -53,7 +54,7 @@ public class Triangle extends BasicShape {
 			float y = sinLUT[i] * radius;
 			p.vertex(x, y);
 		}
-		p.endShape(p.CLOSE);
+		p.endShape(PConstants.CLOSE);
 	}
 	
 }

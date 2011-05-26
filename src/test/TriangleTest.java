@@ -5,6 +5,8 @@ import org.vormplus.shapeLib.polygons.*;
 
 public class TriangleTest extends PApplet {
 
+	private static final long serialVersionUID = 1L;
+
 	Triangle t;
 	
 	static public void main(String args[])

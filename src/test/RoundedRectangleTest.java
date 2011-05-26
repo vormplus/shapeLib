@@ -1,11 +1,11 @@
 package test;
 
 import processing.core.*;
-
 import org.vormplus.shapeLib.*;
-import org.vormplus.shapeLib.polygons.Hexagon;
 
 public class RoundedRectangleTest extends PApplet {
+
+	private static final long serialVersionUID = 1L;
 
 	RoundedRectangle r;
 
