@@ -77,20 +77,20 @@ public class Hexagon extends BasicShape {
 	/**
 	 * Returns the internal angle of the Hexagon.
 	 * @return float: Internal angle of the Hexagon.
-	 * TODO: Calculation of the internal angle
 	 */
 	public float internalAngle()
 	{
+		// (( 180 * 6 ) - 360) / 6
 		return 120.0f;
 	}
 	
 	/**
 	 * Returns the external angle of the Hexagon.
 	 * @return float: External angle of the Hexagon.
-	 * TODO: Calculation of the external angle
 	 */
 	public float externalAngle()
 	{
-		return 120.0f;	
-	}	
+		// 180 - internal angle
+		return 60.0f;
+	}
 }
