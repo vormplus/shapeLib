@@ -1,0 +1,5 @@
+Research Petrie Polygons
+http://en.wikipedia.org/wiki/Petrie_polygon
+
+Research Sutherland-Hodgman clipping algorithm
+http://en.wikipedia.org/wiki/Sutherland-Hodgman_algorithm
