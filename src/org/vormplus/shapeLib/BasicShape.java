@@ -2,6 +2,12 @@ package org.vormplus.shapeLib;
 
 import processing.core.PApplet;
 
+/**
+ * Create a BasicShape object.
+ * 
+ * @author Jan Vantomme
+ */
+
 public class BasicShape {
 
 	protected PApplet p;

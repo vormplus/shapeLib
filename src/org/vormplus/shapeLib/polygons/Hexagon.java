@@ -4,6 +4,18 @@ import processing.core.PApplet;
 import processing.core.PConstants;
 import org.vormplus.shapeLib.BasicShape;
 
+/**
+ * Create a Hexagon object.
+ * This class extends the BasicShape class.
+ * 
+ * References
+ * -----------------
+ * http://en.wikipedia.org/wiki/Hexagon
+ * http://www.mathopenref.com/hexagon.html
+ * 
+ * @author Jan Vantomme
+ */
+
 public class Hexagon extends BasicShape {
 
 	public float radius;

@@ -4,7 +4,17 @@ import processing.core.PApplet;
 import processing.core.PConstants;
 import org.vormplus.shapeLib.BasicShape;
 
-// http://en.wikipedia.org/wiki/Decagon
+/**
+ * Create a Decagon object.
+ * This class extends the BasicShape class.
+ * 
+ * References
+ * -----------------
+ * http://en.wikipedia.org/wiki/Decagon
+ * http://www.mathopenref.com/decagon.html
+ * 
+ * @author Jan Vantomme
+ */
 
 public class Decagon extends BasicShape {
 

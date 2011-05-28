@@ -4,6 +4,13 @@ import processing.core.PApplet;
 import processing.core.PConstants;
 import org.vormplus.shapeLib.BasicShape;
 
+/**
+ * Create a RoundedRectangle object.
+ * This class extends the BasicShape class.
+ * 
+ * @author Jan Vantomme
+ */
+
 public class RoundedRectangle extends BasicShape {
 
 	public float w;
