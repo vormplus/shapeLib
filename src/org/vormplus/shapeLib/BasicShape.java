@@ -17,8 +17,4 @@ public class BasicShape {
 		p = _p;
 	}
 	
-	public void render()
-	{
-	}
-	
 }

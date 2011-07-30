@@ -1,8 +1,9 @@
 package org.vormplus.shapeLib.polygons;
 
 import processing.core.PApplet;
-import processing.core.PConstants;
-import org.vormplus.shapeLib.BasicShape;
+import processing.core.PVector;
+
+import org.vormplus.shapeLib.polygons.RegularPolygon;
 
 /**
  * Create a Decagon object.
@@ -16,12 +17,12 @@ import org.vormplus.shapeLib.BasicShape;
  * @author Jan Vantomme
  */
 
-public class Decagon extends BasicShape {
+public class Decagon extends RegularPolygon {
 
 	public float radius;
 	
-	private float cosLUT[];
-	private float sinLUT[];
+	private int numVertices = 10;
+	public PVector[] vertices;
 
 	/**
 	 * Creates a Decagon object
@@ -29,17 +30,9 @@ public class Decagon extends BasicShape {
 	 */
 	public Decagon( PApplet _p ) {
 		super( _p );
+
 		radius = 50.0f;
-		
-		cosLUT = new float[10];
-		sinLUT = new float[10];
-		
-		float a = PConstants.TWO_PI / 10;
-		
-		for (int i = 0; i < 10; i++) {
-			cosLUT[i] = PApplet.cos( i * a );
-			sinLUT[i] = PApplet.sin( i * a );
-		}
+		vertices = calculateVertices( numVertices, radius );
 	}
 
 	/**
@@ -49,6 +42,8 @@ public class Decagon extends BasicShape {
 	public Decagon setRadius(float r)
 	{
 		radius = r;
+		vertices = calculateVertices( numVertices, radius );
+
 		return this;
 	}
 
@@ -57,13 +52,7 @@ public class Decagon extends BasicShape {
 	 */
 	public void render()
 	{
-		p.beginShape();
-		for (int i = 0; i < 10; i++) {
-			float x = cosLUT[i] * radius;
-			float y = sinLUT[i] * radius;
-			p.vertex(x, y);
-		}
-		p.endShape(PConstants.CLOSE);
+		render( vertices );
 	}
 	
 	/**
@@ -72,8 +61,7 @@ public class Decagon extends BasicShape {
 	 */
 	public float area()
 	{
-		
-		return 0.0f;
+		return area( numVertices, radius );
 	}
 	
 	/**
@@ -82,7 +70,7 @@ public class Decagon extends BasicShape {
 	 */
 	public float perimeter()
 	{
-		return 0.0f;
+		return perimeter( vertices );
 	}
 	
 	/**
@@ -91,8 +79,7 @@ public class Decagon extends BasicShape {
 	 */
 	public float internalAngle()
 	{
-		// (( 180 * 10 ) - 360) / 10
-		return 144.0f;
+		return internalAngle( numVertices );
 	}
 	
 	/**
@@ -101,8 +88,7 @@ public class Decagon extends BasicShape {
 	 */
 	public float externalAngle()
 	{
-		// 180 - internal angle
-		return 36.0f;	
+		return externalAngle( numVertices );
 	}
 	
 }

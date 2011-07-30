@@ -1,45 +1,50 @@
 package org.vormplus.shapeLib.polygons;
 
 import processing.core.PApplet;
-import processing.core.PConstants;
-import org.vormplus.shapeLib.BasicShape;
+import processing.core.PVector;
 
-public class Triangle extends BasicShape {
+import org.vormplus.shapeLib.polygons.RegularPolygon;
+
+/**
+ * Creates a Triangle object, a regular polygon with 3 sides.
+ * This class extends the BasicShape class.
+ * 
+ * References
+ * -----------------
+ * http://en.wikipedia.org/wiki/Triangle
+ * http://www.mathopenref.com/Triangle.html
+ * 
+ * @author Jan Vantomme
+ */
+
+public class Triangle extends RegularPolygon {
 
 	public float radius;
-
-	private float cosLUT[];
-	private float sinLUT[];
-
+	
+	private int numVertices = 3;
+	public PVector[] vertices;
+	
 	/**
-	 * Creates a Triangle object
+	 * Creates a Triangle object with a radius of 50.
 	 * @param _p Reference to the PApplet object. Normally use 'this'
 	 */
-	public Triangle( PApplet _p )
-	{
+	public Triangle( PApplet _p ) {
 		super( _p );
-	
 		radius = 50.0f;
-
-		cosLUT = new float[3];
-		sinLUT = new float[3];
 		
-		float a = PConstants.TWO_PI / 3;
-		
-		for (int i = 0; i < 3; i++) {
-			cosLUT[i] = PApplet.cos( i * a );
-			sinLUT[i] = PApplet.sin( i * a );
-		}
-	
+		vertices = calculateVertices( numVertices, radius );
 	}
-	
+
 	/**
 	 * Sets the radius for the Triangle.
 	 * @param r Radius for the Triangle.
 	 */
-	public Triangle setRadius( float r )
+	public Triangle setRadius(float r)
 	{
 		radius = r;
+		
+		vertices = calculateVertices( numVertices, radius );
+
 		return this;
 	}
 
@@ -48,13 +53,42 @@ public class Triangle extends BasicShape {
 	 */
 	public void render()
 	{
-		p.beginShape();
-		for (int i = 0; i < 3; i++) {
-			float x = cosLUT[i] * radius;
-			float y = sinLUT[i] * radius;
-			p.vertex(x, y);
-		}
-		p.endShape(PConstants.CLOSE);
+		render( vertices );
 	}
 	
+	/**
+	 * Returns the area of the Triangle.
+	 * @return float: Area of the Triangle.
+	 */
+	public float area()
+	{
+		return area( numVertices, radius );
+	}
+	
+	/**
+	 * Returns the perimeter of the Triangle.
+	 * @return float: Perimeter of the Triangle.
+	 */
+	public float perimeter()
+	{
+		return perimeter( vertices );
+	}
+	
+	/**
+	 * Returns the internal angle of the Triangle.
+	 * @return float: Internal angle of the Triangle.
+	 */
+	public float internalAngle()
+	{
+		return internalAngle( numVertices );
+	}
+	
+	/**
+	 * Returns the external angle of the Triangle.
+	 * @return float: External angle of the Triangle.
+	 */
+	public float externalAngle()
+	{
+		return externalAngle( numVertices );
+	}
 }

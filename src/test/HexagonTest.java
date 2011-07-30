@@ -9,7 +9,7 @@ public class HexagonTest extends PApplet {
 
 	Hexagon h;
 	
-	static public void main(String args[])
+	static public void main( String args[] )
 	{
 		PApplet.main(new String[] { /* "--present", */"test.HexagonTest" });
 	}

@@ -1,11 +1,12 @@
 package org.vormplus.shapeLib.polygons;
 
 import processing.core.PApplet;
-import processing.core.PConstants;
-import org.vormplus.shapeLib.BasicShape;
+import processing.core.PVector;
+
+import org.vormplus.shapeLib.polygons.RegularPolygon;
 
 /**
- * Create a Hexagon object.
+ * Creates a Hexagon object, a regular polygon with 6 sides.
  * This class extends the BasicShape class.
  * 
  * References
@@ -16,30 +17,22 @@ import org.vormplus.shapeLib.BasicShape;
  * @author Jan Vantomme
  */
 
-public class Hexagon extends BasicShape {
+public class Hexagon extends RegularPolygon {
 
 	public float radius;
 	
-	private float cosLUT[];
-	private float sinLUT[];
-
+	private int numVertices = 6;
+	public PVector[] vertices;
+	
 	/**
-	 * Creates a Hexagon object
+	 * Creates a Hexagon object with a radius of 50.
 	 * @param _p Reference to the PApplet object. Normally use 'this'
 	 */
 	public Hexagon( PApplet _p ) {
 		super( _p );
 		radius = 50.0f;
 		
-		cosLUT = new float[6];
-		sinLUT = new float[6];
-		
-		float a = PConstants.TWO_PI / 6;
-		
-		for (int i = 0; i < 6; i++) {
-			cosLUT[i] = PApplet.cos( i * a );
-			sinLUT[i] = PApplet.sin( i * a );
-		}
+		vertices = calculateVertices( numVertices, radius );
 	}
 
 	/**
@@ -49,6 +42,9 @@ public class Hexagon extends BasicShape {
 	public Hexagon setRadius(float r)
 	{
 		radius = r;
+		
+		vertices = calculateVertices( numVertices, radius );
+
 		return this;
 	}
 
@@ -57,13 +53,7 @@ public class Hexagon extends BasicShape {
 	 */
 	public void render()
 	{
-		p.beginShape();
-		for (int i = 0; i < 6; i++) {
-			float x = cosLUT[i] * radius;
-			float y = sinLUT[i] * radius;
-			p.vertex(x, y);
-		}
-		p.endShape(PConstants.CLOSE);
+		render( vertices );
 	}
 	
 	/**
@@ -72,9 +62,7 @@ public class Hexagon extends BasicShape {
 	 */
 	public float area()
 	{
-		// faster with r * r in stead of pow() ???
-		float area = ((3 * PApplet.sqrt(3)) / 2) * PApplet.pow(radius , 2);
-		return area;
+		return area( numVertices, radius );
 	}
 	
 	/**
@@ -83,8 +71,7 @@ public class Hexagon extends BasicShape {
 	 */
 	public float perimeter()
 	{
-		float perimeter = 6 * radius;
-		return perimeter;
+		return perimeter( vertices );
 	}
 	
 	/**
@@ -93,8 +80,7 @@ public class Hexagon extends BasicShape {
 	 */
 	public float internalAngle()
 	{
-		// (( 180 * 6 ) - 360) / 6
-		return 120.0f;
+		return internalAngle( numVertices );
 	}
 	
 	/**
@@ -103,7 +89,6 @@ public class Hexagon extends BasicShape {
 	 */
 	public float externalAngle()
 	{
-		// 180 - internal angle
-		return 60.0f;
+		return externalAngle( numVertices );
 	}
 }
