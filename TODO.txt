@@ -1,5 +1,11 @@
-Research Petrie Polygons
+Research: Petrie Polygons
 http://en.wikipedia.org/wiki/Petrie_polygon
 
-Research Sutherland-Hodgman clipping algorithm
+Research: Sutherland-Hodgman clipping algorithm
 http://en.wikipedia.org/wiki/Sutherland-Hodgman_algorithm
+
+Research: Point inside polygon
+http://demonstrations.wolfram.com/IsAPointInsideOrOutsideARegularPolygon/
+http://alienryderflex.com/polygon/
+http://paulbourke.net/geometry/insidepoly/
+http://erich.realtimerendering.com/ptinpoly/
